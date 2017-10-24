@@ -4,17 +4,17 @@ using namespace akgl;
 
 void bez::Render(anim &Ani)
 {
-    // выключаем включаем свет и крива€ станет €рче - гениально))
+
     glDisable(GL_LIGHTING);
-    // лини€ потолще
+
     glLineWidth(7.0);
-    // сглаживание линии
+
     glEnable(GL_LINE_SMOOTH);
-    //цельна€ ломана€, первые 2 точки - отрезок далее по€вл€етс€ 3 точка и соедин€етс€ со 2й, 4€ с 3й и тд
+
     glBegin(GL_LINE_STRIP);
-    //цвет
+
     glColor3d(col.x, col.y, col.z);
-    //рисуем наш массив точек кривой
+
     for (int i = 0; i < 500; i++)
         glVertex3d(positions[i].x, positions[i].y, positions[i].z);
     glEnd();
@@ -23,7 +23,7 @@ void bez::Render(anim &Ani)
 }
 void bez::Response(anim &Ani)
 {
-    // пересчитываем нашу кривую по формуле
+
     double t;
     int j = 0;
     for (t = 0; t <= 1; t += 0.002)
@@ -37,7 +37,7 @@ void bez::Response(anim &Ani)
         }
         positions[j++] = p;
     }
-    // удерживаем все опорные точки в пределах кубика
+
     for (int i = 0; i < size; i++)
     {
         P[i] += dir[i] * 0.05;
