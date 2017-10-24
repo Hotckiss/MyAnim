@@ -1,9 +1,9 @@
 #include"anim.h"
 using namespace akgl;
-// стандартныя инициализация опен гл
+// Г±ГІГ Г­Г¤Г Г°ГІГ­Г»Гї ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї Г®ГЇГҐГ­ ГЈГ«
 anim::anim(void) : StockSize(0)
 {
-    ///!!! вместо этих 2 сточек нужно в мэйне в начале написать glutInit(&arg, argv);
+    ///!!! ГўГ¬ГҐГ±ГІГ® ГЅГІГЁГµ 2 Г±ГІГ®Г·ГҐГЄ Г­ГіГ¦Г­Г® Гў Г¬ГЅГ©Г­ГҐ Гў Г­Г Г·Г Г«ГҐ Г­Г ГЇГЁГ±Г ГІГј glutInit(&arg, argv);
     int arg = 0;
     glutInit(&arg, 0);
     ///
@@ -11,7 +11,7 @@ anim::anim(void) : StockSize(0)
     glutInitWindowSize(800, 600);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("My cool animation system");
-    // включить освещение
+    // ГўГЄГ«ГѕГ·ГЁГІГј Г®Г±ГўГҐГ№ГҐГ­ГЁГҐ
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
@@ -32,7 +32,7 @@ void anim::Keyboard(unsigned char Key, int x, int y)
     if (Key == 'f')
         glutFullScreen();
 }
-/// это тоже не нужно, ну просто переписать, это типо таймер
+/// ГЅГІГ® ГІГ®Г¦ГҐ Г­ГҐ Г­ГіГ¦Г­Г®, Г­Гі ГЇГ°Г®Г±ГІГ® ГЇГҐГ°ГҐГЇГЁГ±Г ГІГј, ГЅГІГ® ГІГЁГЇГ® ГІГ Г©Г¬ГҐГ°
 void anim::Idle(void)
 {
     long Time;
@@ -49,7 +49,7 @@ void anim::Idle(void)
         glutPostRedisplay();
     }
 }
-// изменение размера и расположение наблюдателя(по сути точка откуда мы смотрим и куда, все)
+// ГЁГ§Г¬ГҐГ­ГҐГ­ГЁГҐ Г°Г Г§Г¬ГҐГ°Г  ГЁ Г°Г Г±ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ Г­Г ГЎГ«ГѕГ¤Г ГІГҐГ«Гї(ГЇГ® Г±ГіГІГЁ ГІГ®Г·ГЄГ  Г®ГІГЄГіГ¤Г  Г¬Г» Г±Г¬Г®ГІГ°ГЁГ¬ ГЁ ГЄГіГ¤Г , ГўГ±ГҐ)
 void anim::Reshape(int Width, int Height)
 {
     glViewport(0, 0, Width, Height);
@@ -64,48 +64,48 @@ void anim::Display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glPushMatrix();
-    /// кубик, это будет типо кубик внутри которого все происходит))
+    /// ГЄГіГЎГЁГЄ, ГЅГІГ® ГЎГіГ¤ГҐГІ ГІГЁГЇГ® ГЄГіГЎГЁГЄ ГўГ­ГіГІГ°ГЁ ГЄГ®ГІГ®Г°Г®ГЈГ® ГўГ±ГҐ ГЇГ°Г®ГЁГ±ГµГ®Г¤ГЁГІ))
     glColor3d(0, 1, 0);
     glLineWidth(1);
     glutWireCube(14);
-    // включить и выключить свет нужно чтобы линии стали ярче сказал сомс...
+    // ГўГЄГ«ГѕГ·ГЁГІГј ГЁ ГўГ»ГЄГ«ГѕГ·ГЁГІГј Г±ГўГҐГІ Г­ГіГ¦Г­Г® Г·ГІГ®ГЎГ» Г«ГЁГ­ГЁГЁ Г±ГІГ Г«ГЁ ГїГ°Г·ГҐ Г±ГЄГ Г§Г Г« Г±Г®Г¬Г±...
     glDisable(GL_LIGHTING);
-   // отрисовка координатных осей x y z
+   // Г®ГІГ°ГЁГ±Г®ГўГЄГ  ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ­Г»Гµ Г®Г±ГҐГ© x y z
     glBegin(GL_LINES);
-    //x красный
+    //x ГЄГ°Г Г±Г­Г»Г©
     glColor3d(1, 0, 0);
     glVertex3d(-3, -7, 0);
     glVertex3d(100, -7, 0);
-    // y зеленый
+    // y Г§ГҐГ«ГҐГ­Г»Г©
     glColor3d(0, 1, 0);
     glVertex3d(0, -10, 0);
     glVertex3d(0, 100, 0);
-    //z синий
+    //z Г±ГЁГ­ГЁГ©
     glColor3d(0, 0, 1);
     glVertex3d(0, -7, -3);
     glVertex3d(0, -7, 100);
     glEnd();
     glEnable(GL_LIGHTING);
     glPopMatrix();
-    // вызываем перерисовку всех объектов и обновляем время
+    // ГўГ»Г§Г»ГўГ ГҐГ¬ ГЇГҐГ°ГҐГ°ГЁГ±Г®ГўГЄГі ГўГ±ГҐГµ Г®ГЎГєГҐГЄГІГ®Гў ГЁ Г®ГЎГ­Г®ГўГ«ГїГҐГ¬ ГўГ°ГҐГ¬Гї
     Instance.Timer();
     Instance.Render();
     glFinish();
     glutSwapBuffers();
 }
-// прошлись все удалили.
+// ГЇГ°Г®ГёГ«ГЁГ±Гј ГўГ±ГҐ ГіГ¤Г Г«ГЁГ«ГЁ.
 anim::~anim(void)
 {
     for (int i = 0; i < StockSize; i++)
         delete Stock[i], Stock[i] = NULL;
 }
-// прощлись по всем и нарисовали
+// ГЇГ°Г®Г№Г«ГЁГ±Гј ГЇГ® ГўГ±ГҐГ¬ ГЁ Г­Г Г°ГЁГ±Г®ГўГ Г«ГЁ
 void anim::Render(void)
 {
     for (int i = 0; i < StockSize; i++)
         Stock[i]->Render(*this);
 }
-// прошли по всем и всем поменяли там расположение и тд
+// ГЇГ°Г®ГёГ«ГЁ ГЇГ® ГўГ±ГҐГ¬ ГЁ ГўГ±ГҐГ¬ ГЇГ®Г¬ГҐГ­ГїГ«ГЁ ГІГ Г¬ Г°Г Г±ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ ГЁ ГІГ¤ 
 void anim::Timer(void)
 {
     for (int i = 0; i < StockSize; i++)
